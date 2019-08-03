@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Curiosity.gd" type="Script" id=1]
 [ext_resource path="res://Assets/img/Curiosity.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/Cargo Plane Cabin Ambiance-SoundBible.com-589803489.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "IDLE"
@@ -74,3 +75,8 @@ anims/WALK = SubResource( 3 )
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -15.0
+
