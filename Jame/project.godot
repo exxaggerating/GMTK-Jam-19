@@ -19,6 +19,10 @@ config/name="Jame"
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SceneSwitcher="*res://Scenes/SceneSwitcher.tscn"
+
 [display]
 
 window/size/width=800
