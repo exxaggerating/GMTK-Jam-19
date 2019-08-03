@@ -12,6 +12,7 @@ var current_state = State.IDLE
 var velocity = Vector2()
 var is_midair = true
 var is_jumping = false
+var direction = 1
 
 func _ready():
 	$AnimationPlayer.play("IDLE")
@@ -31,7 +32,7 @@ func _physics_process(delta):
 	
 	match current_state:
 		State.MOVING:
-			velocity.x += delta * WALK_ACCEL
+			velocity.x += delta * WALK_ACCEL * direction
 			velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 		State.IDLE:
 			velocity.x = 0
@@ -65,3 +66,7 @@ func _on_morse(Code, actions):
 					$AnimationPlayer.play("IDLE")
 				
 				current_state = State.IDLE
+		[Code.LONG]:
+			$Sprite.flip_h = !$Sprite.flip_h
+			direction *= -1
+			velocity.x *= -1
