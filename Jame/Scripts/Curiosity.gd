@@ -12,13 +12,14 @@ var current_state = State.IDLE
 var velocity = Vector2()
 var is_midair = true
 var is_jumping = false
+var direction = 1
 
 func _ready():
 	$AnimationPlayer.play("IDLE")
 	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished")
 	InputController.connect("morse", self, "_on_morse")
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	if is_jumping && $AnimationPlayer.current_animation_position >= 1.2:
 		velocity.y = JUMP_POWER
 		is_jumping = false
@@ -27,11 +28,11 @@ func _physics_process(delta):
 	if is_midair:
 		velocity.y += delta * GRAVITY
 	else:
-		velocity.y = 1
+		velocity.y = 0
 	
 	match current_state:
 		State.MOVING:
-			velocity.x += delta * WALK_ACCEL
+			velocity.x += delta * WALK_ACCEL * direction
 			velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 		State.IDLE:
 			velocity.x = 0
@@ -65,3 +66,7 @@ func _on_morse(Code, actions):
 					$AnimationPlayer.play("IDLE")
 				
 				current_state = State.IDLE
+		[Code.LONG]:
+			$Sprite.flip_h = !$Sprite.flip_h
+			direction *= -1
+			velocity.x *= -1
