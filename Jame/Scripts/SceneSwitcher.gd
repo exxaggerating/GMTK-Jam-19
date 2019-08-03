@@ -30,14 +30,18 @@ func load_save():
 func _ready():
 	load_save()
 
+func reload():
+	get_tree().reload_current_scene()
+
 func start_game():
-	if current_level == 0:
+	if completed_level == 0:
 		# Cue Cutscene
 		pass
-	current_level = completed_level + 1
+	current_level = 1
 	load_current_level()
 	
 func load_level(i):
+	current_level = i
 	get_tree().change_scene("res://Scenes/Level" + str(i) + ".tscn")
 	
 func load_current_level():

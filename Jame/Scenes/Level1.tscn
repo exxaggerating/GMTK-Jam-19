@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/LevelController.gd" type="Script" id=1]
 [ext_resource path="res://Styles/index0.tres" type="StyleBox" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://Scenes/Legend.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/GameOverMenu.gd" type="Script" id=7]
 [ext_resource path="res://Styles/WhiteNoiseShaderMaterial.tres" type="Material" id=8]
+[ext_resource path="res://Styles/index2.tres" type="StyleBox" id=9]
+[ext_resource path="res://Styles/AlphaMaleBig.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Styles/index4.tres" type="StyleBox" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 376.564 )
@@ -78,6 +81,7 @@ margin_left = 1008.0
 margin_right = 1008.0
 
 [node name="Menu" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 7 )
@@ -85,7 +89,6 @@ script = ExtResource( 7 )
 [node name="Tween" type="Tween" parent="Menu"]
 
 [node name="Node2D" type="Node2D" parent="Menu"]
-editor/display_folded = true
 z_index = 2
 
 [node name="CameraWhiteNoise" type="ColorRect" parent="Menu/Node2D"]
@@ -95,6 +98,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1008.0
 margin_bottom = 720.0
+
+[node name="Node2D2" type="Node2D" parent="Menu"]
+z_index = 2
+
+[node name="ContinuePanel" type="Panel" parent="Menu/Node2D2"]
+editor/display_folded = true
+margin_left = 252.0
+margin_top = 200.0
+margin_right = 756.0
+margin_bottom = 300.0
+custom_styles/panel = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="Menu/Node2D2/ContinuePanel"]
+margin_right = 504.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 10 )
+text = "Continue"
+align = 1
+valign = 1
+
+[node name="QuitPanel" type="Panel" parent="Menu/Node2D2"]
+editor/display_folded = true
+margin_left = 252.0
+margin_top = 420.0
+margin_right = 756.0
+margin_bottom = 520.0
+custom_styles/panel = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="Menu/Node2D2/QuitPanel"]
+margin_right = 504.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 10 )
+text = "Exit to Menu"
+align = 1
+valign = 1
+
+[node name="Selection" type="Panel" parent="Menu/Node2D2"]
+margin_left = 167.0
+margin_top = 215.0
+margin_right = 237.0
+margin_bottom = 285.0
+custom_styles/panel = ExtResource( 11 )
 
 [connection signal="acceleration" from="GameWindow/Curiosity" to="Legend" method="_on_Curiosity_acceleration"]
 [connection signal="tween_completed" from="Menu/Tween" to="Menu" method="_on_Tween_tween_completed"]
