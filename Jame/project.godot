@@ -28,6 +28,7 @@ InputController="*res://Scenes/InputController.tscn"
 
 window/size/width=1200
 window/size/height=900
+window/size/resizable=false
 
 [input]
 
