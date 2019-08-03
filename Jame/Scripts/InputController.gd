@@ -14,6 +14,9 @@ func _ready():
 	# TODO: Disable Mouse
 	pass
 
+func is_held():
+	return status == DOWN
+
 func _input(event):
 	# Keydown
 	if event.is_action_pressed("morse"):

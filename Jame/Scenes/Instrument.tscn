@@ -1,19 +1,33 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Styles/index1.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/Instrument.gd" type="Script" id=2]
-[ext_resource path="res://Styles/AlphaMaleBig.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/img/part_time.png" type="Texture" id=3]
+[ext_resource path="res://Assets/img/full_time.png" type="Texture" id=4]
+[ext_resource path="res://Styles/AlphaMaleBig.tres" type="DynamicFont" id=5]
 
 [node name="Instrument" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -700.0
+margin_bottom = -720.0
 
 [node name="Background" type="Panel" parent="."]
 margin_right = 1200.0
-margin_bottom = 200.0
+margin_bottom = 180.0
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="part_time" type="Sprite" parent="Background"]
+position = Vector2( 1122, 90 )
+scale = Vector2( 7, 130 )
+texture = ExtResource( 3 )
+
+[node name="full_time" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 1094, 25 )
+scale = Vector2( 7, 130 )
+texture = ExtResource( 4 )
+centered = false
 
 [node name="OverflowError" type="Label" parent="Background"]
 visible = false
@@ -21,5 +35,5 @@ margin_left = 160.0
 margin_top = 50.0
 margin_right = 872.0
 margin_bottom = 150.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 5 )
 text = "OVERFLOW ERROR"
