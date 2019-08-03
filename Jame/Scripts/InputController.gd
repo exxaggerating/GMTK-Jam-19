@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 enum {DOWN, RELEASED}
 enum Code {LONG, SHORT, DONE}
