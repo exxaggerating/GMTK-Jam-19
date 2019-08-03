@@ -3,15 +3,15 @@ extends Control
 var levels
 var max_selection
 
-var y_spacing = 70
-var x_spacing = 290
+var y_spacing = 100
+var x_spacing = 450
 
-var x1 = 105
-var y1 = 100
+var x1 = 150
+var y1 = 138
 
 var current_selection = 0
 
-var back_select_pos = Vector2(245, 473)
+var back_select_pos = Vector2(360, 695)
 var index1 = load("res://Styles/index1.tres")
 
 func _ready():

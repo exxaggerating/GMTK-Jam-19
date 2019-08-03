@@ -10,7 +10,6 @@ var menu_items
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	InputController.connect("morse", self, "_on_morse")
-	# Check if there is already a Game file
 	menu_items = [$StartGamePanel, $SelectLevelPanel, $QuitPanel]
 	if SceneSwitcher.completed_level != -1:
 		$StartGame.text = "Continue"
@@ -22,7 +21,7 @@ func _ready():
 		menu = [0, 2]
 
 func update_selection():
-	$Selection.rect_position.y = menu_items[menu[selection]].rect_position.y + 20
+	$Selection.rect_position.y = menu_items[menu[selection]].rect_position.y + 30
 	
 func forward():
 	selection = (selection + 1) % menu.size()

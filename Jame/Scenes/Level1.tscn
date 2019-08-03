@@ -2,3 +2,13 @@
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Panel" type="Panel" parent="."]
+margin_left = 1050.0
+margin_right = 1200.0
+margin_bottom = 900.0
+
+[node name="Panel2" type="Panel" parent="."]
+margin_top = 750.0
+margin_right = 1200.0
+margin_bottom = 900.0
+
