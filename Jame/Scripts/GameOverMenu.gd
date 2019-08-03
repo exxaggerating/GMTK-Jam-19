@@ -7,9 +7,11 @@ var select
 func _ready():
 	select = $Node2D2/Selection
 	self.hide()
+	$Node2D2.hide()
 
 func _on_Tween_tween_completed(object, key):
 	self.show()
+	$Node2D2.show()
 	InputController.connect("morse", self, "_on_morse")
 	
 func advance():
