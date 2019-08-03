@@ -37,6 +37,9 @@ func start_game():
 	current_level = completed_level + 1
 	load_current_level()
 	
+func load_level(i):
+	get_tree().change_scene("res://Scenes/Level" + str(i) + ".tscn")
+	
 func load_current_level():
 	save_game()
 	get_tree().change_scene("res://Scenes/Level" + str(current_level) + ".tscn")

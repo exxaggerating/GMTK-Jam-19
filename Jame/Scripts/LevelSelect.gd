@@ -47,4 +47,7 @@ func _on_morse(Code, actions):
 				current_selection -= 1
 			update_selection()
 		[Code.LONG]:
-			pass
+			if current_selection == max_selection:
+				SceneSwitcher.main_menu()
+			else:
+				SceneSwitcher.load_level(current_selection + 1)
