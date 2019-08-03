@@ -33,7 +33,6 @@ func _process(process_delta):
 		var now = OS.get_ticks_msec()
 		var delta = now - time
 		var factor = (1.0 - (delta / 700.0))
-		print(factor)
 		if factor < 0:
 			factor = 0
 		var size = scale_y * factor
@@ -41,6 +40,9 @@ func _process(process_delta):
 		var position = Vector2(pos_x, pos_y + (scale_y - size))
 		update_time(scale, position)
 	
+# dont look at this too hard
+# seriously you dont wanna see this
+# last warning: you will be disturbed...
 func update_time(scale, pos):
 	self.remove_child(full_sprite)
 	full_sprite = Sprite.new()
