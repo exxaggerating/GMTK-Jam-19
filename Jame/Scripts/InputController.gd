@@ -10,6 +10,21 @@ var begin = 0
 var status = RELEASED
 var actions = []
 
+var short_sound = load("res://Sounds/ShortMorse.wav")
+var long_sound = load("res://Sounds/LongMorse.wav")
+
+func play_sound(sound, volume=0, pitch=1):
+	var player = AudioStreamPlayer.new()
+	player.stream = sound
+	self.add_child(player)
+	player.volume_db = volume
+	player.pitch_scale = pitch
+	player.connect("finished", self, "kill_player", [player], CONNECT_ONESHOT)
+	player.play()
+
+func kill_player(player):
+	self.remove_child(player)
+
 func _ready():
 	# TODO: Disable Mouse
 	pass
@@ -28,9 +43,11 @@ func _input(event):
 		begin = end
 		if elapsed > 400:
 			actions.append(Code.LONG)
+			play_sound(long_sound)
 			emit_signal("character", Code.LONG)
 		else:
 			actions.append(Code.SHORT)
+			play_sound(short_sound)
 			emit_signal("character", Code.SHORT)
 		status = RELEASED
 		
