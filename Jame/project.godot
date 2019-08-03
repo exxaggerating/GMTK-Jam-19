@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneSwitcher="*res://Scenes/SceneSwitcher.tscn"
+InputController="*res://Scenes/InputController.tscn"
 
 [display]
 
