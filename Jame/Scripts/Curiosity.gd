@@ -19,7 +19,7 @@ func _ready():
 	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished")
 	InputController.connect("morse", self, "_on_morse")
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	if is_jumping && $AnimationPlayer.current_animation_position >= 1.2:
 		velocity.y = JUMP_POWER
 		is_jumping = false
@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if is_midair:
 		velocity.y += delta * GRAVITY
 	else:
-		velocity.y = 1
+		velocity.y = 0
 	
 	match current_state:
 		State.MOVING:
