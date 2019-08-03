@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Styles/index0.tres" type="StyleBox" id=1]
+[ext_resource path="res://Styles/index1.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/Instrument.gd" type="Script" id=2]
 [ext_resource path="res://Styles/AlphaMaleBig.tres" type="DynamicFont" id=3]
 
@@ -23,4 +23,3 @@ margin_right = 872.0
 margin_bottom = 150.0
 custom_fonts/font = ExtResource( 3 )
 text = "OVERFLOW ERROR"
-
