@@ -4,6 +4,9 @@ extends Node2D
 func _ready():
 	$GameWindow/Bounds/DeathZone.connect("body_entered", self, "_on_death_zone")
 	$GameWindow/Goal.connect("body_entered", self, "_on_goal_reached")
+	
+	for node in get_tree().get_nodes_in_group("TRAP"):
+		node.connect("body_entered", self, "_on_death_zone")
 
 func _on_death_zone(other):
 	if other.is_in_group("PLAYER"):
