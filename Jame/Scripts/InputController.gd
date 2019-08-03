@@ -4,6 +4,7 @@ enum {DOWN, RELEASED}
 enum Code {LONG, SHORT, DONE}
 
 signal morse
+signal character
 
 var begin = 0
 var status = RELEASED
@@ -24,8 +25,10 @@ func _input(event):
 		begin = end
 		if elapsed > 400:
 			actions.append(Code.LONG)
+			emit_signal("character", Code.LONG)
 		else:
 			actions.append(Code.SHORT)
+			emit_signal("character", Code.SHORT)
 		status = RELEASED
 		
 func _process(delta):
