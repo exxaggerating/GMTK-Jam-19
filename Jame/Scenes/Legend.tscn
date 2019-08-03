@@ -1,14 +1,153 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Styles/index1.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/img/Jump_icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/img/Dot.png" type="Texture" id=3]
+[ext_resource path="res://Assets/img/Curiosity.png" type="Texture" id=4]
+[ext_resource path="res://Assets/img/stop_sign.png" type="Texture" id=5]
+[ext_resource path="res://Assets/img/Dash.png" type="Texture" id=6]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Control
+
+func _ready():
+	$Control2/stop_sign.hide()
+	$Control2/Walk.show()
+
+func _on_Curiosity_acceleration(State, current_state):
+	if current_state == State.IDLE:
+		$Control2/stop_sign.hide()
+		$Control2/Walk.show()
+	elif current_state == State.MOVING:
+		$Control2/Walk.hide()
+		$Control2/stop_sign.show()
+"
+
+[sub_resource type="Animation" id=1]
+resource_name = "Tutorial_Walk"
+length = 2.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Curiosity:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
+}
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends AnimationPlayer
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.play(\"Tutorial_Walk\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Sprite
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	 self.flip_h = (OS.get_ticks_msec() / 1000) % 2
+"
 
 [node name="Legend" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1008.0
 margin_bottom = -180.0
+script = SubResource( 5 )
 
 [node name="Background" type="Panel" parent="."]
 margin_right = 192.0
 margin_bottom = 720.0
 custom_styles/panel = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+editor/display_folded = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Jump_icon" type="Sprite" parent="Control"]
+position = Vector2( 145, 60 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Dot" type="Sprite" parent="Control"]
+position = Vector2( 20, 60 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="Control2" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Dot2" type="Sprite" parent="Control2"]
+position = Vector2( 55, 140 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="Dot3" type="Sprite" parent="Control2"]
+position = Vector2( 20, 140 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="Walk" type="Node2D" parent="Control2"]
+editor/display_folded = true
+
+[node name="CuriosityAnimationPlayer" type="AnimationPlayer" parent="Control2/Walk"]
+anims/Tutorial_Walk = SubResource( 1 )
+script = SubResource( 2 )
+
+[node name="Curiosity" type="Sprite" parent="Control2/Walk"]
+position = Vector2( 145, 135 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+hframes = 38
+frame = 19
+
+[node name="stop_sign" type="Sprite" parent="Control2"]
+visible = false
+position = Vector2( 145, 140 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+
+[node name="Control3" type="Control" parent="."]
+editor/display_folded = true
+margin_left = 5.0
+margin_top = 200.0
+margin_right = 45.0
+margin_bottom = 240.0
+
+[node name="Dash" type="Sprite" parent="Control3"]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Curiosity" type="Sprite" parent="Control3"]
+position = Vector2( 140, 10 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+hframes = 38
+frame = 19
+script = SubResource( 3 )
+

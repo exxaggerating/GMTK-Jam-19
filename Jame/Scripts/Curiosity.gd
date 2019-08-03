@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+signal acceleration
 
 enum State {IDLE, MOVING}
 
@@ -66,6 +67,7 @@ func _on_morse(Code, actions):
 					$AnimationPlayer.play("IDLE")
 				
 				current_state = State.IDLE
+			emit_signal("acceleration", State, current_state)
 		[Code.LONG]:
 			$Sprite.flip_h = !$Sprite.flip_h
 			direction *= -1

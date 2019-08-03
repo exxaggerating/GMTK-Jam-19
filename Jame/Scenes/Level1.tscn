@@ -33,3 +33,5 @@ margin_bottom = 720.0
 [node name="Legend" parent="." instance=ExtResource( 5 )]
 margin_left = 1008.0
 margin_right = 1008.0
+
+[connection signal="acceleration" from="GameWindow/Curiosity" to="Legend" method="_on_Curiosity_acceleration"]
