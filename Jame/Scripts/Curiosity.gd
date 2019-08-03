@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if is_midair:
 		velocity.y += delta * GRAVITY
 	else:
-		velocity.y = 0
+		velocity.y = 1
 	
 	match current_state:
 		State.MOVING:
@@ -37,10 +37,10 @@ func _physics_process(delta):
 		State.IDLE:
 			velocity.x = 0
 	
-	var collision_vector = move_and_slide(velocity, Vector2(0, -1))
+	move_and_slide(velocity, Vector2(0, -1))
 	
 	# Reset gravitational forces when touching the ground
-	if collision_vector.y == 0:
+	if test_move(transform, Vector2(0, 1)):
 		is_midair = false
 	else:
 		is_midair = true
