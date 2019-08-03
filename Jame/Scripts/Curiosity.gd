@@ -5,7 +5,7 @@ signal acceleration
 enum State {IDLE, MOVING}
 
 const GRAVITY = 60.0
-const WALK_ACCEL = 10.0
+const WALK_ACCEL = 25.0
 const MAX_SPEED = 50.0
 const JUMP_POWER = -120
 
