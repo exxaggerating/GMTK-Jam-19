@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Curiosity.gd" type="Script" id=1]
 [ext_resource path="res://Assets/img/Curiosity.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "IDLE"
 length = 0.2
 step = 0.2
@@ -37,8 +37,7 @@ tracks/0/keys = {
 "values": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "WALK"
+[sub_resource type="Animation" id=3]
 length = 2.8
 step = 0.2
 tracks/0/type = "value"
@@ -66,9 +65,9 @@ hframes = 38
 frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/IDLE = SubResource( 3 )
+anims/IDLE = SubResource( 1 )
 anims/JUMP = SubResource( 2 )
-anims/WALK = SubResource( 1 )
+anims/WALK = SubResource( 3 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false

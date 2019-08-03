@@ -8,6 +8,7 @@ var current_state = State.IDLE
 func _ready():
 	$AnimationPlayer.play("IDLE")
 	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished")
+	InputController.connect("morse", self, "_on_morse")
 
 func _on_animation_finished(animation):
 	match current_state:
