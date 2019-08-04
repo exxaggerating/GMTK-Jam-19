@@ -1,5 +1,12 @@
 extends Panel
 
+
+# Notice:
+# The former "Ok" check was changed to "ET" because 'E' and 'T' were easier to
+# type. But because the code worked, no other person would be interested in it
+# and we are only one hour away from the deadline, please note that all "o_"
+# variables refer to the left letter and all "k_" to the right letter
+
 var a = load("res://Assets/img/Controller/360_A.png")
 var b = load("res://Assets/img/Controller/360_B.png")
 var x = load("res://Assets/img/Controller/360_X.png")
@@ -74,12 +81,12 @@ func _ready():
 func _on_morse(Code, actions):
 	var matched = false
 	match actions:
-		[Code.LONG, Code.LONG, Code.LONG]:
+		[Code.SHORT]:
 			o_done = true
 			matched = true
 			control_indicator.rect_position = k_pos
 			control_indicator.rect_size = k_size
-		[Code.LONG, Code.SHORT, Code.LONG]:
+		[Code.LONG]:
 			if o_done:
 				InputController.disconnect("morse", self, "_on_morse")
 				$ControlTutorial.hide()
