@@ -15,9 +15,16 @@ func get_completed_level():
 	return completed_level
 
 func save_game():
+	var keys_prop = InputMap.get_action_list("morse")
+	var keys = []
+	for key in keys_prop:
+		if key is EncodedObjectAsID:
+			keys.append(instance_from_id(key.get_object_id()))
+		else:
+			keys.append(key)
 	var save_data = {
 		"level":completed_level,
-		"keys":InputMap.get_action_list("morse"),
+		"keys":keys,
 		"sfx":SoundController.sfx,
 		"music":SoundController.music
 		}
@@ -27,6 +34,7 @@ func save_game():
 	
 func load_save():
 	if savegame.file_exists(save_path):
+		# savegame.open_encrypted_with_pass(save_path, File.READ, "{13291ce0-7435-11e9-a40b-806e6f6e6963}")
 		savegame.open_encrypted_with_pass(save_path, File.READ, OS.get_unique_id())
 		var data = savegame.get_var()
 		savegame.close()
@@ -38,8 +46,11 @@ func load_save():
 		SoundController.sfx = data["sfx"]
 		SoundController.music = data["music"]
 		SoundController.update_volume()
-		print(data["keys"])
-		print(InputMap.get_action_list("morse"))
+		# print(data)
+		# print("alive")
+		# for key in data["keys"]:
+		# 	print(key)
+		# print(InputMap.get_action_list("morse"))
 		for key in InputMap.get_action_list("morse"):
 			InputMap.action_erase_event("morse", key)
 		for key in data["keys"]:
