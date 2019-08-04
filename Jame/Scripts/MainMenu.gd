@@ -11,7 +11,7 @@ var menu_items
 func _ready():
 	InputController.connect("morse", self, "_on_morse")
 	menu_items = [$StartGamePanel, $SelectLevelPanel, $OptionsPanel, $QuitPanel]
-	if SceneSwitcher.completed_level != -1:
+	if SceneSwitcher.completed_level != 0:
 		$StartGame.text = "Continue"
 		$SelectLevelPanel.set("custom_styles/panel", index4)
 		menu = [0, 1, 2, 3]

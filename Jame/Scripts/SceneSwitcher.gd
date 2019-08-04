@@ -70,7 +70,7 @@ func start_game():
 	if completed_level == 0:
 		# Cue Cutscene
 		pass
-	current_level = 1
+	current_level = completed_level + 1
 	load_current_level()
 	
 func load_level(i):
