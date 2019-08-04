@@ -50,7 +50,7 @@ func _input(event):
 		status = RELEASED
 		
 func _process(delta):
-	if status == RELEASED:
+	if status == RELEASED and actions.size() > 0:
 		var elapsed = OS.get_ticks_msec() - begin
 		if elapsed > 700:
 			emit_signal("morse", Code, actions)
