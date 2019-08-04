@@ -1,7 +1,8 @@
 extends AudioStreamPlayer
 
-var default = load("res://Sounds/Background/Space Loop.wav")
+var default = load("res://Sounds/Background/Cosmic Messages.wav")
 var intense = load("res://Sounds/Background/Andromeda Journey.wav")
+var credits = load("res://Sounds/Background/Space Loop.wav")
 
 var jump_sound = load("res://Sounds/Large Industrial Robot-SoundBible.com-1509415522.wav")
 var turn_sound = load("res://Sounds/Robot Leg Moving-SoundBible.com-1391027677.wav")

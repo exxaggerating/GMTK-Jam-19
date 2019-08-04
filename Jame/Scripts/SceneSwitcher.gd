@@ -89,7 +89,7 @@ func load_current_level():
 func next_level():
 	completed_level += 1
 	if current_level == max_level:
-		# Load final Cutscene, switch to the Credits and land in the main menu
+		SoundController.change_to(SoundController.credits)
 		get_tree().change_scene("res://Scenes/Cutscene.tscn")
 	else:
 		current_level += 1
