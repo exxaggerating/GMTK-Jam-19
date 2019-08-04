@@ -1,7 +1,7 @@
 extends Node
 
 var current_level = 0
-var max_level = 5
+var max_level = 3
 var completed_level = 0
 
 
