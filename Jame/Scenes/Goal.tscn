@@ -2,19 +2,19 @@
 
 [ext_resource path="res://Assets/res/World_Tilemap.tres" type="TileSet" id=1]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Area2D
 
 
 func _ready():
 	pass # Replace with function body."
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14, 4 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 4 )
 
 [node name="Goal" type="Area2D"]
 gravity_vec = Vector2( 0, 0 )
-script = SubResource( 2 )
+script = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -27,4 +27,4 @@ tile_data = PoolIntArray( -65536, 8, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 8, -4 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
