@@ -30,7 +30,6 @@ func load_save():
 		savegame.open_encrypted_with_pass(save_path, File.READ, OS.get_unique_id())
 		var data = savegame.get_var()
 		savegame.close()
-		print(data)
 		if data.size() <= 1:
 			# This is an old and invalid save, we need a new one
 			save_game()

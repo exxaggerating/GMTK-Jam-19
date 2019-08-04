@@ -22,10 +22,12 @@ func is_held():
 func _input(event):
 	if change:
 		if event is InputEventKey:
-			if event.as_text().begins_with("InputEventJoypadButton"):
-				InputMap.action_erase_event("morse", joypad_key)
-			else:
-				InputMap.action_erase_event("morse", keyboard_key)
+			InputMap.action_erase_event("morse", keyboard_key)
+			InputMap.action_add_event("morse", event)
+			SceneSwitcher.save_game()
+			emit_signal("key_changed")
+		elif event is InputEventJoypadButton:
+			InputMap.action_erase_event("morse", joypad_key)
 			InputMap.action_add_event("morse", event)
 			SceneSwitcher.save_game()
 			emit_signal("key_changed")
