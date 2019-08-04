@@ -4,4 +4,3 @@
 
 [node name="SceneSwitcher" type="Node"]
 script = ExtResource( 1 )
-

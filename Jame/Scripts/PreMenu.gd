@@ -1,9 +1,5 @@
 extends Panel
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var a = load("res://Assets/img/Controller/360_A.png")
 var b = load("res://Assets/img/Controller/360_B.png")
 var x = load("res://Assets/img/Controller/360_X.png")
@@ -29,8 +25,11 @@ var button_index = [a, b, x, y, lb, rb, lt, rt, l_stick, r_stick, back, start, d
 
 var o_done = false
 
+var control_indicator
+var menu_indicator
+
 func set_joypad(key):
-	$Controls/Joypad.texture = button_index[key.button_index]
+	$ControlTutorial/Controls/Joypad.texture = button_index[key.button_index]
 
 var o_pos = Vector2(90, 220)
 var o_size = Vector2(480, 230)
@@ -38,14 +37,37 @@ var o_size = Vector2(480, 230)
 var k_pos = Vector2(630, 220)
 var k_size = Vector2(400, 230)
 
+var exit_pos = Vector2(350, 520)
+var cont_pos = Vector2(350, 640)
+var understood_pos = Vector2(350, 760)
+
+var menu_positons = [exit_pos, cont_pos, understood_pos]
+var menu_possibilities = [0, 2]
+
+var selection = 0
+
+var index1 = load("res://Styles/index1.tres")
+var index4 = load("res://Styles/index4.tres")
+
+var understood_panel
+var continue_panel
+
 func _ready():
-	$Indicator.rect_size = o_size
-	$Indicator.rect_position = o_pos
+	control_indicator = $ControlTutorial/Indicator
+	menu_indicator = $MenuTutorial/Indicator
+	
+	understood_panel = $MenuTutorial/Understood
+	continue_panel = $MenuTutorial/Continue
+	
+	control_indicator.rect_size = o_size
+	control_indicator.rect_position = o_pos
+	
 	InputController.connect("morse", self, "_on_morse")
+	
 	var keys = InputMap.get_action_list("morse")
 	for key in keys:
 		if key is InputEventKey:
-			$Controls/Keyboard.text = key.as_text()
+			$ControlTutorial/Controls/Keyboard.text = key.as_text()
 		else:
 			set_joypad(key)
 
@@ -55,13 +77,51 @@ func _on_morse(Code, actions):
 		[Code.LONG, Code.LONG, Code.LONG]:
 			o_done = true
 			matched = true
-			$Indicator.rect_position = k_pos
-			$Indicator.rect_size = k_size
+			control_indicator.rect_position = k_pos
+			control_indicator.rect_size = k_size
 		[Code.LONG, Code.SHORT, Code.LONG]:
 			if o_done:
-				SceneSwitcher.main_menu()
+				InputController.disconnect("morse", self, "_on_morse")
+				$ControlTutorial.hide()
+				$MenuTutorial.show()
+				InputController.connect("morse", self, "_on_morse_menu")
+				return
 		_:
 			if not matched:
 				o_done = false
-				$Indicator.rect_position = o_pos
-				$Indicator.rect_size = o_size
+				control_indicator.rect_position = o_pos
+				control_indicator.rect_size = o_size
+
+func update_selection():
+	menu_indicator.rect_position = menu_positons[menu_possibilities[selection]]
+
+func advance():
+	selection = (selection + 1) % 2
+	update_selection()
+	
+func reverse():
+	selection -= 1
+	if selection < 0:
+		selection = 1
+	update_selection()
+
+func select():
+	match menu_possibilities[selection]:
+		0:
+			get_tree().quit()
+		1:
+			SceneSwitcher.main_menu()
+		2:
+			menu_possibilities = [0, 1]
+			understood_panel.set("custom_styles/panel", index1)
+			update_selection()
+			continue_panel.set("custom_styles/panel", index4)
+
+func _on_morse_menu(Code, actions):
+	match actions:
+		[Code.SHORT]:
+			advance()
+		[Code.SHORT, Code.SHORT]:
+			reverse()
+		[Code.LONG]:
+			select()

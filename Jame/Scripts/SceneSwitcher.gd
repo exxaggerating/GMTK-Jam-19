@@ -57,8 +57,8 @@ func load_save():
 		var k = InputEventKey.new()
 		k.set_scancode(data["keys"]["scancode"])
 		InputMap.action_add_event("morse", k)
-		
-	pre_menu()
+	else:
+		pre_menu()
 
 func _ready():
 	load_save()
