@@ -8,6 +8,7 @@ var completed_level = 0
 var savegame = File.new()
 var save_path = "user://savegame.bin"
 
+
 func get_max_level():
 	return max_level
 	
@@ -45,21 +46,22 @@ func load_save():
 		SoundController.sfx = data["sfx"]
 		SoundController.music = data["music"]
 		SoundController.update_volume()
-		# print(data)
-		# print("alive")
-		# for key in data["keys"]:
-		# 	print(key)
-		# print(InputMap.get_action_list("morse"))
+		
 		for key in InputMap.get_action_list("morse"):
 			InputMap.action_erase_event("morse", key)
 		for key in data["keys"]:
 			if key is EncodedObjectAsID:
 				var inst = instance_from_id(key.get_object_id())
-				print(inst.as_text())
-				InputMap.action_add_event("morse", inst)
+				if inst.as_text().begins_with("InputEventJoypadButton"):
+					var i = InputEventJoypadButton.new()
+					i.set_button_index(inst.get_button_index())
+					InputMap.action_add_event("morse", i)
+				else:
+					var i = InputEventKey.new()
+					i.set_scancode(inst.get_scancode())
+					InputMap.action_add_event("morse", i)
 			else:
 				InputMap.action_add_event("morse", key)
-		print(InputMap.get_action_list("morse"))
 	pre_menu()
 
 func _ready():
