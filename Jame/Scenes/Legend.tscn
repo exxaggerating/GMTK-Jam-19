@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/img/stop_sign.png" type="Texture" id=5]
 [ext_resource path="res://Assets/img/Dash.png" type="Texture" id=6]
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
 func _ready():
@@ -23,8 +23,7 @@ func _on_Curiosity_acceleration(State, current_state):
 		$Control2/stop_sign.show()
 "
 
-[sub_resource type="Animation" id=1]
-resource_name = "Tutorial_Walk"
+[sub_resource type="Animation" id=2]
 length = 2.8
 loop = true
 step = 0.2
@@ -41,7 +40,7 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
 }
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=3]
 script/source = "extends AnimationPlayer
 
 # Declare member variables here. Examples:
@@ -57,7 +56,7 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Sprite
 
 
@@ -75,7 +74,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1008.0
 margin_bottom = -180.0
-script = SubResource( 5 )
+script = SubResource( 1 )
 
 [node name="Background" type="Panel" parent="."]
 margin_right = 192.0
@@ -98,6 +97,7 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 
 [node name="Control2" type="Control" parent="."]
+editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -115,8 +115,8 @@ texture = ExtResource( 3 )
 editor/display_folded = true
 
 [node name="CuriosityAnimationPlayer" type="AnimationPlayer" parent="Control2/Walk"]
-anims/Tutorial_Walk = SubResource( 1 )
-script = SubResource( 2 )
+anims/Tutorial_Walk = SubResource( 2 )
+script = SubResource( 3 )
 
 [node name="Curiosity" type="Sprite" parent="Control2/Walk"]
 position = Vector2( 145, 135 )
@@ -149,5 +149,5 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 hframes = 38
 frame = 19
-script = SubResource( 3 )
+script = SubResource( 4 )
 
