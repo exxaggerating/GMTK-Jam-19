@@ -12,7 +12,7 @@ var dot = load("res://Sounds/ShortMorse.wav")
 var dash = load("res://Sounds/LongMorse.wav")
 
 var sfx = 0.0
-var music = 0.0
+var music = -15.0
 
 func _ready():
 	InputController.connect("character", self, "beep")
