@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=1]
 [ext_resource path="res://Styles/index0.tres" type="StyleBox" id=2]
 [ext_resource path="res://Assets/img/Cutscene.png" type="Texture" id=3]
+[ext_resource path="res://Styles/AlphaMaleBigCredit.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Styles/AlphaMaleCredits.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Styles/AlphaMaleBig.tres" type="DynamicFont" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "CUTSCENE"
@@ -38,3 +41,231 @@ frame = 116
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/CUTSCENE = SubResource( 1 )
+
+[node name="Credits" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3000.0
+margin_right = 1200.0
+margin_bottom = -120.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+
+[node name="Artist" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_right = 1200.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 4 )
+text = "Lead Artist"
+align = 1
+
+[node name="Mxi" type="Label" parent="Credits/Artist"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 5 )
+text = "Maxi \"Exxag\" Nothnagel"
+align = 1
+
+[node name="UI" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 200.0
+margin_right = 1200.0
+margin_bottom = 290.0
+custom_fonts/font = ExtResource( 4 )
+text = "Lead UI Designer"
+align = 1
+
+[node name="Lks" type="Label" parent="Credits/UI"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 5 )
+text = "Lukas \"Delta\" Vavra"
+align = 1
+
+[node name="Level" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 400.0
+margin_right = 1200.0
+margin_bottom = 490.0
+custom_fonts/font = ExtResource( 4 )
+text = "Lead Level Designer"
+align = 1
+
+[node name="Mxi" type="Label" parent="Credits/Level"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 5 )
+text = "Maxi \"Exxag\" Nothnagel"
+align = 1
+
+[node name="Sound" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 600.0
+margin_right = 1200.0
+margin_bottom = 690.0
+custom_fonts/font = ExtResource( 4 )
+text = "Lead Sound Engineer"
+align = 1
+
+[node name="Lks" type="Label" parent="Credits/Sound"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 5 )
+text = "Lukas \"Delta\" Vavra"
+align = 1
+
+[node name="Categorizer" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 800.0
+margin_right = 1200.0
+margin_bottom = 890.0
+custom_fonts/font = ExtResource( 4 )
+text = "Lead Work Categorizer"
+align = 1
+
+[node name="Mxi" type="Label" parent="Credits/Categorizer"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 5 )
+text = "Maxi \"Exxag\" Nothnagel"
+align = 1
+
+[node name="Merge" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 1000.0
+margin_right = 1200.0
+margin_bottom = 1090.0
+custom_fonts/font = ExtResource( 4 )
+text = "Lead Merge Resolver"
+align = 1
+
+[node name="Lks" type="Label" parent="Credits/Merge"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 5 )
+text = "Lukas \"Delta\" Vavra"
+align = 1
+
+[node name="Programming" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 1200.0
+margin_right = 1200.0
+margin_bottom = 1290.0
+custom_fonts/font = ExtResource( 4 )
+text = "Head of Programming"
+align = 1
+
+[node name="Mxi" type="Label" parent="Credits/Programming"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 5 )
+text = "Maxi \"Exxag\" Nothnagel"
+align = 1
+
+[node name="Lks" type="Label" parent="Credits/Programming"]
+margin_top = 150.0
+margin_right = 1200.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 5 )
+text = "Lukas \"Delta\" Vavra"
+align = 1
+
+[node name="Audio" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 1450.0
+margin_right = 1200.0
+margin_bottom = 1540.0
+custom_fonts/font = ExtResource( 4 )
+text = "Audio"
+align = 1
+
+[node name="Label" type="Label" parent="Credits/Audio"]
+margin_top = 120.0
+margin_right = 1200.0
+margin_bottom = 767.0
+custom_fonts/font = ExtResource( 5 )
+text = "Robot Leg Moving Sound
+by Mike Koenig
+published under CC BY 3.0
+
+Cargo Plane Cabin Ambiance Sound
+by Mike Koenig
+published under CC BY 3.0
+
+Large Industrial Robot Sound
+by Mike Koenig
+published under CC BY 3.0
+
+"
+align = 1
+
+[node name="Images" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 2150.0
+margin_right = 1200.0
+margin_bottom = 2240.0
+custom_fonts/font = ExtResource( 4 )
+text = "Images"
+align = 1
+
+[node name="Label" type="Label" parent="Credits/Images"]
+margin_top = 120.0
+margin_right = 1200.0
+margin_bottom = 267.0
+custom_fonts/font = ExtResource( 5 )
+text = "White Noise image
+by Jorge Stolfi
+published under CC BY-SA 3.0"
+align = 1
+
+[node name="SpecialThanks" type="Label" parent="Credits"]
+editor/display_folded = true
+margin_top = 2450.0
+margin_right = 1200.0
+margin_bottom = 2540.0
+custom_fonts/font = ExtResource( 4 )
+text = "Special Thanks"
+align = 1
+
+[node name="Godot" type="Label" parent="Credits/SpecialThanks"]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 5 )
+text = "Godot Engine Developers
+godoengine.org/license
+
+Blue Phoenix
+for the supernova-7 Palette
+
+Javier Guerrero
+for the Nyx8 Palette"
+align = 1
+
+[node name="Colors" type="Label" parent="Credits/SpecialThanks"]
+margin_top = 210.0
+margin_right = 1200.0
+margin_bottom = 307.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Memory" type="Label" parent="."]
+visible = false
+margin_right = 1200.0
+margin_bottom = 900.0
+custom_fonts/font = ExtResource( 6 )
+text = "In Memory Of
+Curiosity"
+align = 1
+valign = 1
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Credit_tween_completed"]
