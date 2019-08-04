@@ -38,10 +38,13 @@ func load_save():
 		SoundController.sfx = data["sfx"]
 		SoundController.music = data["music"]
 		SoundController.update_volume()
+		print(data["keys"])
+		print(InputMap.get_action_list("morse"))
 		for key in InputMap.get_action_list("morse"):
 			InputMap.action_erase_event("morse", key)
 		for key in data["keys"]:
 			InputMap.action_add_event("morse", key);
+	pre_menu()
 
 func _ready():
 	load_save()
@@ -75,12 +78,16 @@ func next_level():
 		load_current_level()
 	
 func main_menu():
+	save_game()
 	SoundController.change_to(SoundController.default)
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	
 func level_select():
 	get_tree().change_scene("res://Scenes/LevelSelect.tscn")
-	
+
+func pre_menu():
+	get_tree().change_scene("res://Scenes/PreMenu.tscn")
+
 func options():
 	get_tree().change_scene("res://Scenes/Options.tscn")
 

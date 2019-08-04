@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Styles/index0.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scripts/PreMenu.gd" type="Script" id=2]
+[ext_resource path="res://Styles/AlphaMaleBig.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Styles/index5.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/img/Dash.png" type="Texture" id=5]
+[ext_resource path="res://Assets/img/Dot.png" type="Texture" id=6]
+[ext_resource path="res://Assets/img/Controller/360_A.png" type="Texture" id=7]
+
+[node name="Pre-Menu" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Instruction" type="Label" parent="."]
+margin_top = 100.0
+margin_right = 1200.0
+margin_bottom = 190.0
+custom_fonts/font = ExtResource( 3 )
+text = "Morse the following Code:"
+align = 1
+
+[node name="Indicator" type="Panel" parent="."]
+margin_left = 630.0
+margin_top = 220.0
+margin_right = 1030.0
+margin_bottom = 450.0
+custom_styles/panel = ExtResource( 4 )
+
+[node name="O" type="Label" parent="."]
+editor/display_folded = true
+margin_left = 300.0
+margin_top = 250.0
+margin_right = 359.0
+margin_bottom = 340.0
+custom_fonts/font = ExtResource( 3 )
+text = "O"
+
+[node name="Dash2" type="Sprite" parent="O"]
+position = Vector2( -130, 140 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+
+[node name="Dash3" type="Sprite" parent="O"]
+position = Vector2( 30, 140 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+
+[node name="Dash4" type="Sprite" parent="O"]
+position = Vector2( 190, 140 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+
+[node name="K" type="Label" parent="."]
+editor/display_folded = true
+margin_left = 800.0
+margin_top = 250.0
+margin_right = 859.0
+margin_bottom = 340.0
+custom_fonts/font = ExtResource( 3 )
+text = "k"
+
+[node name="Dash" type="Sprite" parent="K"]
+position = Vector2( -90, 140 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+
+[node name="Dot" type="Sprite" parent="K"]
+position = Vector2( 30, 140 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 6 )
+
+[node name="Dash2" type="Sprite" parent="K"]
+position = Vector2( 150, 140 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+
+[node name="Controls" type="Label" parent="."]
+editor/display_folded = true
+margin_top = 550.0
+margin_right = 1200.0
+margin_bottom = 640.0
+custom_fonts/font = ExtResource( 3 )
+text = "This is your Morse Key:"
+align = 1
+
+[node name="Keyboard" type="Label" parent="Controls"]
+margin_left = 100.0
+margin_top = 130.0
+margin_right = 500.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 3 )
+text = "Sample"
+align = 2
+
+[node name="or" type="Label" parent="Controls"]
+margin_left = 554.0
+margin_top = 130.0
+margin_right = 646.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 3 )
+text = "or"
+align = 1
+
+[node name="Joypad" type="Sprite" parent="Controls"]
+position = Vector2( 750, 180 )
+texture = ExtResource( 7 )
+
