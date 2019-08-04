@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 SceneSwitcher="*res://Scenes/SceneSwitcher.tscn"
 InputController="*res://Scenes/InputController.tscn"
+BackgroundMusic="*res://Scenes/BackgroundMusic.tscn"
 
 [display]
 

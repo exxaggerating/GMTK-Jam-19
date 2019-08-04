@@ -42,10 +42,11 @@ func start_game():
 	
 func load_level(i):
 	current_level = i
-	get_tree().change_scene("res://Scenes/Level" + str(i) + ".tscn")
+	load_current_level()
 	
 func load_current_level():
 	save_game()
+	BackgroundMusic.change_to(BackgroundMusic.intense)
 	get_tree().change_scene("res://Scenes/Level" + str(current_level) + ".tscn")
 
 func next_level():
@@ -58,6 +59,7 @@ func next_level():
 		load_current_level()
 	
 func main_menu():
+	BackgroundMusic.change_to(BackgroundMusic.default)
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	
 func level_select():
