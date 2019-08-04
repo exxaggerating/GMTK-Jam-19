@@ -5,7 +5,6 @@ var max_level = 5
 var completed_level = 0
 
 
-var save_data = {"level":completed_level}
 var savegame = File.new()
 var save_path = "user://savegame.bin"
 
@@ -16,16 +15,34 @@ func get_completed_level():
 	return completed_level
 
 func save_game():
-    savegame.open_encrypted_with_pass(save_path, File.WRITE, OS.get_unique_id())
-    savegame.store_var(save_data)
-    savegame.close()
+	var save_data = {
+		"level":completed_level,
+		"keys":InputMap.get_action_list("morse"),
+		"sfx":SoundController.sfx,
+		"music":SoundController.music
+		}
+	savegame.open_encrypted_with_pass(save_path, File.WRITE, OS.get_unique_id())
+	savegame.store_var(save_data)
+	savegame.close()
 	
 func load_save():
 	if savegame.file_exists(save_path):
 		savegame.open_encrypted_with_pass(save_path, File.READ, OS.get_unique_id())
 		var data = savegame.get_var()
 		savegame.close()
+		print(data)
+		if data.size() <= 1:
+			# This is an old and invalid save, we need a new one
+			save_game()
+			return
 		completed_level = data["level"]
+		SoundController.sfx = data["sfx"]
+		SoundController.music = data["music"]
+		SoundController.update_volume()
+		for key in InputMap.get_action_list("morse"):
+			InputMap.action_erase_event("morse", key)
+		for key in data["keys"]:
+			InputMap.action_add_event("morse", key);
 
 func _ready():
 	load_save()
@@ -64,6 +81,9 @@ func main_menu():
 	
 func level_select():
 	get_tree().change_scene("res://Scenes/LevelSelect.tscn")
+	
+func options():
+	get_tree().change_scene("res://Scenes/Options.tscn")
 
 func pause():
 	pass

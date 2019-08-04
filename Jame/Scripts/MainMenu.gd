@@ -10,15 +10,15 @@ var menu_items
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	InputController.connect("morse", self, "_on_morse")
-	menu_items = [$StartGamePanel, $SelectLevelPanel, $QuitPanel]
+	menu_items = [$StartGamePanel, $SelectLevelPanel, $OptionsPanel, $QuitPanel]
 	if SceneSwitcher.completed_level != -1:
 		$StartGame.text = "Continue"
 		$SelectLevelPanel.set("custom_styles/panel", index4)
-		menu = [0, 1, 2]
+		menu = [0, 1, 2, 3]
 	else:
 		$StartGame.text = "Start Game"
 		$SelectLevelPanel.set("custom_styles/panel", index1)
-		menu = [0, 2]
+		menu = [0, 2, 3]
 
 func update_selection():
 	$Selection.rect_position.y = menu_items[menu[selection]].rect_position.y + 30
@@ -40,6 +40,8 @@ func select():
 		1:
 			SceneSwitcher.level_select()
 		2:
+			SceneSwitcher.options()
+		3:
 			get_tree().quit()
 
 func _on_morse(Code, actions):

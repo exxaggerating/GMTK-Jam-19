@@ -24,37 +24,44 @@ script = ExtResource( 2 )
 
 [node name="StartGamePanel" type="Panel" parent="Control"]
 margin_left = 330.0
-margin_top = 240.0
+margin_top = 150.0
 margin_right = 870.0
-margin_bottom = 360.0
+margin_bottom = 270.0
 custom_styles/panel = ExtResource( 3 )
 
 [node name="SelectLevelPanel" type="Panel" parent="Control"]
 margin_left = 330.0
-margin_top = 390.0
+margin_top = 300.0
 margin_right = 870.0
-margin_bottom = 510.0
+margin_bottom = 420.0
 custom_styles/panel = ExtResource( 4 )
+
+[node name="OptionsPanel" type="Panel" parent="Control"]
+margin_left = 330.0
+margin_top = 450.0
+margin_right = 870.0
+margin_bottom = 570.0
+custom_styles/panel = ExtResource( 3 )
 
 [node name="QuitPanel" type="Panel" parent="Control"]
 margin_left = 330.0
-margin_top = 540.0
+margin_top = 600.0
 margin_right = 870.0
-margin_bottom = 660.0
+margin_bottom = 720.0
 custom_styles/panel = ExtResource( 3 )
 
 [node name="Selection" type="Panel" parent="Control"]
 margin_left = 240.0
-margin_top = 270.0
+margin_top = 180.0
 margin_right = 300.0
-margin_bottom = 330.0
+margin_bottom = 240.0
 custom_styles/panel = ExtResource( 5 )
 
 [node name="StartGame" type="Label" parent="Control"]
 margin_left = 330.0
-margin_top = 240.0
+margin_top = 150.0
 margin_right = 870.0
-margin_bottom = 360.0
+margin_bottom = 270.0
 custom_fonts/font = ExtResource( 6 )
 text = "Select Level"
 align = 1
@@ -62,20 +69,31 @@ valign = 1
 
 [node name="SelectLevel" type="Label" parent="Control"]
 margin_left = 330.0
-margin_top = 390.0
+margin_top = 300.0
 margin_right = 870.0
-margin_bottom = 510.0
+margin_bottom = 420.0
 custom_fonts/font = ExtResource( 6 )
 text = "Select Level"
 align = 1
 valign = 1
 
+[node name="Options" type="Label" parent="Control"]
+margin_left = 330.0
+margin_top = 450.0
+margin_right = 870.0
+margin_bottom = 570.0
+custom_fonts/font = ExtResource( 6 )
+text = "Options"
+align = 1
+valign = 1
+
 [node name="Quit" type="Label" parent="Control"]
 margin_left = 330.0
-margin_top = 540.0
+margin_top = 600.0
 margin_right = 870.0
-margin_bottom = 660.0
+margin_bottom = 720.0
 custom_fonts/font = ExtResource( 6 )
 text = "Quit"
 align = 1
 valign = 1
+
