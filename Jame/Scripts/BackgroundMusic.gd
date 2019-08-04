@@ -15,8 +15,12 @@ var dash = load("res://Sounds/LongMorse.wav")
 var sfx = 0.0
 var music = -15.0
 
+var tween
+
 func _ready():
 	InputController.connect("character", self, "beep")
+	tween = Tween.new()
+	self.add_child(tween)
 	
 func update_volume():
 	volume_db = music
@@ -46,8 +50,19 @@ func play_sound(sound, volume=0, pitch=1):
 func kill_player(player):
 	self.remove_child(player)
 
+func faded(object, property, bind):
+	stop()
+	tween.disconnect("tweeen_completed", self, "faded")
+	stream = bind
+	play()
+	remove_child(tween)
+	tween = Tween.new()
+	add_child(tween)
+	tween.interpolate_property(self, "volume_db", -80, music, 0.8, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+
 func change_to(sound):
 	if sound != stream:
-		stop()
-		stream = sound
-		play()
+		tween.connect("tween_completed", self, "faded", [sound])
+		tween.interpolate_property(self, "volume_db", music, -60, 0.8, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.start()
