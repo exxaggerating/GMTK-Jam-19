@@ -34,7 +34,6 @@ func save_game():
 	
 func load_save():
 	if savegame.file_exists(save_path):
-		# savegame.open_encrypted_with_pass(save_path, File.READ, "{13291ce0-7435-11e9-a40b-806e6f6e6963}")
 		savegame.open_encrypted_with_pass(save_path, File.READ, OS.get_unique_id())
 		var data = savegame.get_var()
 		savegame.close()
@@ -54,7 +53,13 @@ func load_save():
 		for key in InputMap.get_action_list("morse"):
 			InputMap.action_erase_event("morse", key)
 		for key in data["keys"]:
-			InputMap.action_add_event("morse", key);
+			if key is EncodedObjectAsID:
+				var inst = instance_from_id(key.get_object_id())
+				print(inst.as_text())
+				InputMap.action_add_event("morse", inst)
+			else:
+				InputMap.action_add_event("morse", key)
+		print(InputMap.get_action_list("morse"))
 	pre_menu()
 
 func _ready():
