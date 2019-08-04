@@ -22,7 +22,12 @@ func _on_goal_reached(other):
 		InputController.disconnect("morse", $GameWindow/Curiosity, "_on_morse")
 		InputController.disconnect("morse", $Instrument/Background, "_on_morse")
 		InputController.disconnect("character", $Instrument/Background, "_on_character")
+		
 		$Instrument/Background/LevelCompleted.show()
+		# Bit ugly, I know
+		$GameWindow/Curiosity.current_state = $GameWindow/Curiosity.State.IDLE
+		$GameWindow/Curiosity/AnimationPlayer.play("BEEP")
+		
 		InputController.connect("morse", self, "_on_continue_level")
 
 func _on_continue_level(code, action):
