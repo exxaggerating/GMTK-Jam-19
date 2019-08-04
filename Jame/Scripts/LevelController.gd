@@ -19,4 +19,11 @@ func _on_death_zone(other):
 
 func _on_goal_reached(other):
 	if other.is_in_group("PLAYER"):
-		print("QUEUE CUTSCENE GODDAMIT")
+		InputController.disconnect("morse", $GameWindow/Curiosity, "_on_morse")
+		InputController.disconnect("morse", $Instrument/Background, "_on_morse")
+		InputController.disconnect("character", $Instrument/Background, "_on_character")
+		$Instrument/Background/LevelCompleted.show()
+		InputController.connect("morse", self, "_on_continue_level")
+
+func _on_continue_level(code, action):
+	SceneSwitcher.next_level()
