@@ -17,12 +17,12 @@ func get_completed_level():
 
 func save_game():
 	var keys_prop = InputMap.get_action_list("morse")
-	var keys = []
+	var keys = {}
 	for key in keys_prop:
-		if key is EncodedObjectAsID:
-			keys.append(instance_from_id(key.get_object_id()))
+		if key is InputEventJoypadButton:
+			keys["button_index"] = key.get_button_index()
 		else:
-			keys.append(key)
+			keys["scancode"] = key.get_scancode()
 	var save_data = {
 		"level":completed_level,
 		"keys":keys,
@@ -49,19 +49,15 @@ func load_save():
 		
 		for key in InputMap.get_action_list("morse"):
 			InputMap.action_erase_event("morse", key)
-		for key in data["keys"]:
-			if key is EncodedObjectAsID:
-				var inst = instance_from_id(key.get_object_id())
-				if inst.as_text().begins_with("InputEventJoypadButton"):
-					var i = InputEventJoypadButton.new()
-					i.set_button_index(inst.get_button_index())
-					InputMap.action_add_event("morse", i)
-				else:
-					var i = InputEventKey.new()
-					i.set_scancode(inst.get_scancode())
-					InputMap.action_add_event("morse", i)
-			else:
-				InputMap.action_add_event("morse", key)
+		
+		var j = InputEventJoypadButton.new()
+		j.set_button_index(data["keys"]["button_index"])
+		InputMap.action_add_event("morse", j)
+		
+		var k = InputEventKey.new()
+		k.set_scancode(data["keys"]["scancode"])
+		InputMap.action_add_event("morse", k)
+		
 	pre_menu()
 
 func _ready():
