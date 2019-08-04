@@ -46,6 +46,7 @@ func kill_player(player):
 	self.remove_child(player)
 
 func change_to(sound):
-	stop()
-	stream = sound
-	play()
+	if sound != stream:
+		stop()
+		stream = sound
+		play()
